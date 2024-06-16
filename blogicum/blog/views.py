@@ -44,7 +44,7 @@ posts = [
     },
 ]
 
-SORTED_POSTS = {}  
+SORTED_POSTS = {}
 # При Dict comprehension
 # TypeError: unhashable type: 'list'
 
