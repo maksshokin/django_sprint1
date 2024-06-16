@@ -1,6 +1,6 @@
 from django.shortcuts import render
 
-# Create your views here.
+
 posts = [
     {
         'id': 0,
@@ -44,6 +44,10 @@ posts = [
     },
 ]
 
+SORTED_POSTS = {}
+
+for i in range(len(posts)):
+    SORTED_POSTS[posts[i]['id']] = posts[i]
 
 def index(request):
     template = 'blog/index.html'
@@ -56,7 +60,7 @@ def index(request):
 def post_detail(request, id):
     template = 'blog/detail.html'
     context = {
-        'post': posts[id]
+        'post': SORTED_POSTS[id]
     }
     return render(request, template, context)
 
