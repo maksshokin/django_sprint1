@@ -50,24 +50,21 @@ for i in range(len(posts)):
     SORTED_POSTS[posts[i]['id']] = posts[i]
 
 def index(request):
-    template = 'blog/index.html'
     context = {
         'posts': posts
     }
-    return render(request, template, context)
+    return render(request, 'blog/index.html', context)
 
 
 def post_detail(request, id):
-    template = 'blog/detail.html'
     context = {
         'post': SORTED_POSTS[id]
     }
-    return render(request, template, context)
+    return render(request, 'blog/detail.html', context)
 
 
 def category_posts(request, category):
-    template = 'blog/category.html'
     context = {
         'category': category,
     }
-    return render(request, template, context)
+    return render(request, 'blog/category.html', context)
