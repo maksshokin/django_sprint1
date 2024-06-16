@@ -45,8 +45,8 @@ posts = [
 ]
 
 SORTED_POSTS = {}  
-#При Dict comprehension 
-#TypeError: unhashable type: 'list'
+# При Dict comprehension
+# TypeError: unhashable type: 'list'
 
 for i in range(len(posts)):
     SORTED_POSTS[posts[i]['id']] = posts[i]
