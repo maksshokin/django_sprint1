@@ -44,7 +44,9 @@ posts = [
     },
 ]
 
-SORTED_POSTS = {}
+SORTED_POSTS = {}  
+#При Dict comprehension 
+#TypeError: unhashable type: 'list'
 
 for i in range(len(posts)):
     SORTED_POSTS[posts[i]['id']] = posts[i]
@@ -58,8 +60,10 @@ def index(request):
 
 
 def post_detail(request, id):
+    # Не понял, что именно требуется поменять
+    # Убрал ошибку, если в словаре нет ключа
     context = {
-        'post': SORTED_POSTS[id]
+        'post': SORTED_POSTS.get(id, SORTED_POSTS[0])
     }
     return render(request, 'blog/detail.html', context)
 
