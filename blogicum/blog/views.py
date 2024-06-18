@@ -47,6 +47,7 @@ posts = [
 
 SORTED_POSTS = {post["id"]: post for post in posts}
 
+
 def index(request):
     context = {
         'posts': posts
