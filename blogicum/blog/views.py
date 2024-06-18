@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.http import Http404
 
 
 posts = [
@@ -44,13 +45,7 @@ posts = [
     },
 ]
 
-SORTED_POSTS = {}
-# При Dict comprehension
-# TypeError: unhashable type: 'list'
-
-for i in range(len(posts)):
-    SORTED_POSTS[posts[i]['id']] = posts[i]
-
+SORTED_POSTS = {post["id"]: post for post in posts}
 
 def index(request):
     context = {
@@ -60,11 +55,12 @@ def index(request):
 
 
 def post_detail(request, id):
-    # Не понял, что именно требуется поменять
-    # Убрал ошибку, если в словаре нет ключа
-    context = {
-        'post': SORTED_POSTS.get(id, SORTED_POSTS[0])
-    }
+    try:
+        context = {
+            'post': SORTED_POSTS[id]
+        }
+    except KeyError:
+        raise Http404("Данного поста не существует")
     return render(request, 'blog/detail.html', context)
 
 
